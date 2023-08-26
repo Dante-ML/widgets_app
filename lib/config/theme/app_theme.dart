@@ -5,7 +5,8 @@ const List<Color> colorList = [
   Colors.pinkAccent,
   Colors.orangeAccent,
   Colors.tealAccent,
-  Colors.yellowAccent
+  Colors.yellowAccent,
+  Colors.deepPurpleAccent,
 ];
 
 class AppTheme {
