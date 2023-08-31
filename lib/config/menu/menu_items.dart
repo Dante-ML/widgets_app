@@ -52,4 +52,11 @@ const List<MenuItem> appMenuItems = [
     url: '/animated', 
     icon: Icons.check_box_outline_blank_rounded,
   ),
+
+  MenuItem(
+    tittle: 'Ui controls + Tiles', 
+    subTittle: 'Serie de controles en flutter', 
+    url: '/ui-controls', 
+    icon: Icons.car_rental_sharp,
+  ),
 ];
