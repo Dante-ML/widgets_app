@@ -59,4 +59,11 @@ const List<MenuItem> appMenuItems = [
     url: '/ui-controls', 
     icon: Icons.car_rental_sharp,
   ),
+
+   MenuItem(
+    tittle: 'Introduccion a la aplicación', 
+    subTittle: 'Tutorial introductorio', 
+    url: '/tutorial', 
+    icon: Icons.tungsten_outlined,
+  ),
 ];
