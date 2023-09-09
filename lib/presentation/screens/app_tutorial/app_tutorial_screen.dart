@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,12 +30,26 @@ class AppTutorialScreen extends StatefulWidget {
 
 class _AppTutorialScreenState extends State<AppTutorialScreen> {
 
+  bool isFinal = false;
   final PageController pageViewControler = PageController();
 
   @override
   void initState() {
     super.initState();
-    pageViewControler.addListener(() { });
+    pageViewControler.addListener(() {
+      final page = pageViewControler.page ?? 0;
+      if (!isFinal && page>=slides.length-1.5){
+        setState(() {
+          isFinal = true;
+        });
+      }
+     });
+  }
+
+  @override
+  void dispose() {
+    pageViewControler.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,7 +78,22 @@ class _AppTutorialScreenState extends State<AppTutorialScreen> {
               child: const Text('Skip tutorial'),
               onPressed: () => context.pop(), 
             )
-          )
+          ),
+
+          //Este boton solo deberia de aparecer al final
+          //Para saber cuando pasa esto usaremos un booleano y el listener
+          isFinal ? Positioned(
+            bottom: 30,
+            right: 30,
+            child: FadeInRight(
+              from: 14,
+              duration: const Duration(seconds: 1),
+              child: FilledButton(
+                child: const Text("Comenzar"),
+                onPressed: () => context.pop(),
+              ),
+            )
+          ) : const SizedBox()
         ],
       ),
     );
