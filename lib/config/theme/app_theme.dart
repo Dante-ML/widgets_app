@@ -27,4 +27,18 @@ class AppTheme {
       centerTitle: false,
     )
   );
+
+  //Metodo que crea una nueva instancia del AppTheme
+  //OJO con las {} 
+  AppTheme copyWith({
+      //En esta instancia tnemos las variables de selectedColor y isDarkmode pero como opcionales
+      //Pueden o no llegarnos un cambio
+      int? selectedColor,
+      bool? isDarkMode,
+    }) => AppTheme(
+    //En caso de que no nos lleguen estas nuevas variables entonces usamos los valores de la instancia
+    //pasada
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode,
+  );
 }

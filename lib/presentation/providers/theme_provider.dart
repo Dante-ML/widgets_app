@@ -16,19 +16,20 @@ final selectedIndexColorProvider = StateProvider<int>((ref) => 0);
 //El que controla es el ThemeNotifier y el estado es una instancia de AppTheme
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier,AppTheme>(
   (ref) => ThemeNotifier(),
-  );
+);
+
+
 
 class ThemeNotifier extends StateNotifier<AppTheme>{
   //Creación de la primera instancia de AppTheme, tenemos valores por defecto
   //STATE = Estadp = new AppTheme();
   ThemeNotifier():super(AppTheme());
-
   void toggleDarkmode(){
-    
+    state = state.copyWith(isDarkMode: !state.isDarkMode);
   }
 
   void changeColorIndex(int colorIndex){
-
+    state = state.copyWith(selectedColor: colorIndex);
   }
 }
 

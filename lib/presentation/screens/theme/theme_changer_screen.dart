@@ -9,7 +9,7 @@ class ThemeChangerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
+    final isDarkMode = ref.watch(themeNotifierProvider).isDarkMode;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Theme changer'),
@@ -17,8 +17,12 @@ class ThemeChangerScreen extends ConsumerWidget {
           IconButton(
             icon: Icon(isDarkMode == true ? Icons.dark_mode_outlined :Icons.light_mode_outlined),
             onPressed: (){
-              ref.watch(isDarkModeProvider.notifier).update(
-                (isDarkMode) => !isDarkMode);
+              //ref.watch(isDarkModeProvider.notifier).update(
+                //(isDarkMode) => !isDarkMode);
+              
+              //Con stateNotifier nosotros somos los que vamos a tener que crear nuestro Notifier
+              //Necesitamos el .notifier para acceder a los metodos del notifier mismo, aka toggleDarkmode
+              ref.read(themeNotifierProvider.notifier).toggleDarkmode();
             }, 
           )
         ],
@@ -35,7 +39,7 @@ class _ThemeChangerView extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
 
     final List<Color> colors = ref.watch(colorListProvider);
-    int selectedColor = ref.watch(selectedIndexColorProvider);
+    final selectedColor = ref.watch(themeNotifierProvider).selectedColor;
     return ListView.builder(
       itemCount: colors.length,
       itemBuilder: (context, index) {
@@ -49,7 +53,7 @@ class _ThemeChangerView extends ConsumerWidget {
           groupValue: selectedColor,
           onChanged: (value) {
             //value = index lo elegiste al principio :P
-            ref.read(selectedIndexColorProvider.notifier).state = index;
+            ref.read(themeNotifierProvider.notifier).changeColorIndex(index);
           },
           );
       },
