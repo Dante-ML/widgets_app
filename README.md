@@ -1,3 +1,3 @@
 # widgets_app
 
-A new Flutter project.
+Proof of concept on the various widgets available
